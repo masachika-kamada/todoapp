@@ -23,12 +23,13 @@ class TaskManager:
                 f.writelines("\n".join(self.tasks))
 
 
-if __name__ == "__main__":
+def main():
     task_manager = TaskManager()
-    font_text = ("Helvetica", 55)
+    font_text = ("Helvetica", 58)
     font_button = ("Helvetica", 20)
     text_button = "完了"
-    max_tasks = 6
+    max_tasks = 7
+    sg.theme("Black")
     content = [
         [sg.Button(text_button, key=f"button_{i}", visible=True, font=font_button),
          sg.Text(task_text, key=f"text_{i}", visible=True, font=font_text)]
@@ -73,3 +74,7 @@ if __name__ == "__main__":
                 window[f"text_{i}"].update("", visible=False)
 
     window.close()
+
+
+if __name__ == "__main__":
+    main()
