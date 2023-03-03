@@ -46,7 +46,7 @@ def main():
          sg.Button("追加", bind_return_key=True, font=font_button)],
         [sg.Column(content)],
     ]
-    window = sg.Window("TODO App", layout, resizable=True, icon="icon.ico", no_titlebar=True, grab_anywhere=True)
+    window = sg.Window("TODO App", layout, resizable=True, icon="icon.ico")
 
     while True:
         event, values = window.read()
