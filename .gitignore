@@ -1,1 +1,5 @@
 *.txt
+*.exe
+app.build
+app.dist
+app.onefile-build
