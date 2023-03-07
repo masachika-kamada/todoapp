@@ -11,16 +11,22 @@ class TaskManager:
             self.tasks = f.read().splitlines()
 
     def add_task(self, task):
-        if task and task not in self.tasks:
+        if task not in self.tasks:
             self.tasks.append(task)
             with open("tasks.txt", "a") as f:
                 f.write(task + "\n")
+            return True
+        return False
 
     def remove_task(self, idx):
-        if idx >= 0 and idx < len(self.tasks):
+        if idx == 0 and len(self.tasks) == 1:
             self.tasks.pop(idx)
             with open("tasks.txt", "w") as f:
-                f.writelines("\n".join(self.tasks))
+                f.write("")
+        elif idx >= 0 and idx < len(self.tasks):
+            self.tasks.pop(idx)
+            with open("tasks.txt", "w") as f:
+                f.writelines("\n".join(self.tasks) + "\n")
 
 
 def main():
@@ -57,9 +63,9 @@ def main():
         if event == "追加":
             task_text = values["input"]
             if task_text.strip():
-                task_manager.add_task(task_text.strip())
+                ret = task_manager.add_task(task_text.strip())
                 window["input"].update("")
-                if len(task_manager.tasks) <= max_tasks:
+                if ret and len(task_manager.tasks) <= max_tasks:
                     window[f"button_{len(task_manager.tasks) - 1}"].update(visible=True)
                     window[f"text_{len(task_manager.tasks) - 1}"].update(task_text.strip(), visible=True)
 
