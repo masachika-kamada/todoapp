@@ -3,3 +3,5 @@
 app.build
 app.dist
 app.onefile-build
+myenv/
+!requirements.txt
